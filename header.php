@@ -9,9 +9,10 @@
 </head>
 <body>
     <div class="d-flex bg-dark text-white">
-        <div class="p-2"><a href="perfil.php" style="text-decoration:none;color:white;" >perfil</a></div>
-        <div class="p-2"><a href="perfil.php" style="text-decoration:none;color:white;" >amigos</a></div>
+        <div class="p-2"><a href="#" style="text-decoration:none;color:white;" >Home</a></div>
+        <div class="p-2"><a href="perfil.php" style="text-decoration:none;color:white;" >Perfil</a></div>
+        <div class="p-2"><a href="#" style="text-decoration:none;color:white;" >Amigos</a></div>
+        <div class="p-2"><a href="#" style="text-decoration:none;color:white;" >Jogos</a></div> 
         <div class="ml-auto p-2"><a href="sair.php" style="text-decoration:none;color:white;" >sair</a></div>
-        
     </div>
 </body>
