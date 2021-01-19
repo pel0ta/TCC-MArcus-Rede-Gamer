@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	if($_SESSION['login']===1){
+	$idusuario=$_SESSION['idusuario'];
+
 ?>
 <html>
 <head>
@@ -20,13 +22,16 @@
 	<Section >
 		<div class="container">
 			<div class="row" text-li>
-				<div class="col-3 ">perfil
-				<i class="fas fa-angry"></i>
+				<div class="col-3 ">
+				<?php
+					echo $_SESSION['idusuario'];
+				?> 	
 				</div>
 				<div class="col-6">posts
-				<i class="far fa-frown"></i>
+					<i class="far fa-frown"></i>
 				</div>
-				<div class="col-3">amigos</div>
+				<div class="col-3">amigos
+				</div>
 			</div>
 		</div>
 	</section>
