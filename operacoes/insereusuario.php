@@ -11,9 +11,10 @@
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
     if($_FILES['arquivo']['name']){
-      $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
-      $novonome = md5(time()) . $extensao;
-      $PASTA="../imagensPerfil.php/";
+      $arquivo= $_FILES['arquivo'];
+      $extensao =  pathinfo($arquivo['name'], PATHINFO_EXTENSION);
+      $novonome = md5(time()).".".$extensao;
+      $PASTA="../imagensPerfil/";
       
       if (!file_exists($PASTA)){
           mkdir("$PASTA", 0700);

@@ -1,8 +1,10 @@
 <?php
 	session_start();
 	if($_SESSION['login']===1){
+		include "operacoes/conn.php";
 	$idusuario=$_SESSION['idusuario'];
-
+	
+	$sql=mysqli_query($conexao,"SELECT *FROM usuarios WHERE idpublico = '$idusuario'")or die("erro ao selecionar");
 ?>
 <html>
 <head>
@@ -21,16 +23,26 @@
 	?>
 	<Section >
 		<div class="container">
-			<div class="row" text-li>
-				<div class="col-3 ">
+			<div class="row " text-li >
+				<div class="col-2 text-center ">
 				<?php
-					echo $_SESSION['idusuario'];
+				while($dados = mysqli_fetch_array($sql)){
+					$foto=$dados['foto'];
+					echo $dados['idpublico'];?><br>
+					<img id="fotoperfil" class="img-thumbnail" width="100" height="150" src="./imagensPerfil/<?php if($foto==NULL)echo"NULL.jpg"; else echo "$foto" ?> "><br><?php
+					echo $dados['nome'];?><br><?php
+					echo $dados['cidade'];?><br><?php
+					echo $dados['estado'];?><br><?php
+					echo $dados['pais'];?><br><?php
+				}
+					
+				
 				?> 	
 				</div>
-				<div class="col-6">posts
+				<div class="col-7 text-center">posts
 					<i class="far fa-frown"></i>
 				</div>
-				<div class="col-3">amigos
+				<div class="col-3 text-center">amigos
 				</div>
 			</div>
 		</div>
