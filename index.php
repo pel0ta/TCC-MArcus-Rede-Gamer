@@ -29,7 +29,7 @@
 				while($dados = mysqli_fetch_array($sql)){
 					$foto=$dados['foto'];
 					echo $dados['idpublico'];?><br>
-					<img id="fotoperfil" class="img-thumbnail" width="100" height="150" src="./imagensPerfil/<?php if($foto==NULL)echo"NULL.jpg"; else echo "$foto" ?> "><br><?php
+					<img id="fotoperfil" class="img-thumbnail" width="100" height="150" src="./imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?> "><br><?php
 					echo $dados['nome'];?><br><?php
 					echo $dados['cidade'];?><br><?php
 					echo $dados['estado'];?><br><?php
@@ -43,6 +43,7 @@
 					<i class="far fa-frown"></i>
 				</div>
 				<div class="col-3 text-center">amigos
+
 				</div>
 			</div>
 		</div>

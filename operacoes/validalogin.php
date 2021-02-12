@@ -13,7 +13,6 @@
 	else{
 		while($dados = mysqli_fetch_array($sql)){
 			$_SESSION['idusuario']= $dados['idpublico'];
-			echo $_SESSION['idusuario'];
 		}
 		$_SESSION['login'] = 1;
 		header('Location: ../index.php');
