@@ -44,7 +44,7 @@
     if (mysqli_query($conexao, $adc)) {
 		$_SESSION['sucesso'] = 1;
 		echo "adicionou";
-      header('Location: ../login.php');    
+    header('Location: ../login.php');    
 
 	}
 	else{
