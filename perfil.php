@@ -21,10 +21,10 @@
         <?php
             include "header.php";
         ?>
-        <div class="container" style="padding:20px 10px;border-radius: 25px;background-image:url(imagens/capa1.jpg)" >
+        <div class="container" style="padding:20px 10px;border-radius: 25px;background-Color:000;background-image:url(imagens/capa1.jpg);" >
            <div class="row">
                 <div class="col">
-                <img src="imagensPerfil/marcus.jpeg" class="img-thumbnail" width="200" height="150" >
+                <img src="imagensPerfil/marcus.jpeg" class="img-thumbnail " width="200" height="150" >
                 </div>       
                 <div class="col text-center mt-5">
                     <h3>Marcus Antonio</h3>
@@ -34,6 +34,29 @@
                     <button type="button" class="btn btn-primary md-3 mt-5">adicionar</button>
                 </div>
             </div>    
+        </div>
+        <div class="container"style="padding:20px;border-radius: 25px;">
+            <div class="row">
+                <div class="col-4"style="background-color:black">
+                    <div class="w-100"></div>
+                    <div class="col-12"style="background-color:yellow">
+                        <p>dados do usuario</p>
+                        <p>começando a dar certo</p>
+                        <p>começando a dar certo</p>
+                        <p>começando a dar certo</p>
+                        <p>começando a dar certo</p>
+                        <p>começando a dar certo</p>
+                        <p>começando a dar certo</p>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-12"style="background-color:blue">
+                            <p>Amigos</p>
+                    </div>
+                </div>       
+                <div class="col-8"style="background-color:blue">
+                    <p>aqui dados sobre publicaçoes</p>
+                </div>
+            </div>
         </div>
 
     </body>
