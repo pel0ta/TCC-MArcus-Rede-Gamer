@@ -35,26 +35,46 @@
                 </div>
             </div>    
         </div>
-        <div class="container"style="padding:20px;border-radius: 25px;">
+        <div class="container"style="padding:20px 10px;border-radius: 25px;">
             <div class="row">
-                <div class="col-4"style="background-color:black">
-                    <div class="w-100"></div>
-                    <div class="col-12"style="background-color:yellow">
-                        <p>dados do usuario</p>
-                        <p>começando a dar certo</p>
-                        <p>começando a dar certo</p>
-                        <p>começando a dar certo</p>
-                        <p>começando a dar certo</p>
-                        <p>começando a dar certo</p>
-                        <p>começando a dar certo</p>
+                <!--aqui crio um linha e coloco 2 colunas, a primeira coluna de tamanho 4  
+                referente com os dados do usuario contendo o 3 colunas uma pra editar 
+                info outra pra mostrar amigos e a ultima para mostrar jogos -->
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px">
+                            <h3>Sobre</h3>
+                            <h5>Nome</h5>
+                            <h5>Cidade</h5>
+                            <h5>Estado</h5>
+                            <button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar</h6></button>
+                        </div>
                     </div>
-                    <div class="w-100"></div>
-                    <div class="col-12"style="background-color:blue">
-                            <p>Amigos</p>
+                    <div class="row">
+                        <div class="col-12 text-center border border-success rounded" style="padding:15px; margin:10px -5px">
+                                <h3>Amigos</h3>
+                        </div>
                     </div>
-                </div>       
-                <div class="col-8"style="background-color:blue">
-                    <p>aqui dados sobre publicaçoes</p>
+                    <div class="row">
+                        <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px">
+                                <h3>Jogos</h3>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--Aqui começa a segunda colula com o tamanho 8 ficara dados para publicaçao e mostarar
+                publicaçoes do usuario-->       
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px 5px">
+                            <h3>Publicar novo Conteudo</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px 5px">
+                            <h3>Conteudos publicados pelo usuarios</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,24 @@ include "vendor/autoload.php";
 use Phpml\Clustering\KMeans;
 
 $samples = [ 'marcus' => [1, 24], 'ronaldo' => [2, 24], 'luiz' => [1, 23],'joao' => [1, 24],'marcelo' => [2, 23]];
+foreach ($samples as $key => $value) {
+    echo $key . " | ";
+    foreach ($value as $item)
+	    echo $item  . " | " ;
+    echo "<br/>";
+}
+$kmeans = new KMeans(2);
+$ola=$kmeans->cluster($samples);
+var_dump($ola);
+echo"<br/>";
+echo"<br/>";
+foreach ($ola as $key => $cluster) {
+    echo "<br>Cluster " . $key . "<br/>";
+    foreach ($cluster as $nome => $atributos)
+	echo "....." . $nome ;//. " / " . var_dump($atributos) . "<br/>";
+}
+
+
 //$samples = [ 'Label1' => [1, 1], 'Label2' => [8, 7], 'Label3' => [1, 2]];
 
 /*javascript
@@ -37,10 +55,6 @@ Php{
  
     echo json_encode($resultado);
 } */
-$kmeans = new KMeans(2);
-$ola=$kmeans->cluster($samples);
-var_dump($ola);
-
 ?>
 
 
