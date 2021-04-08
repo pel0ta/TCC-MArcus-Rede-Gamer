@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="d-flex bg-dark text-white">
-        <div class="p-2"><a href="#" style="text-decoration:none;color:white;" >Home</a></div>
+        <div class="p-2"><a href="index.php" style="text-decoration:none;color:white;" >Home</a></div>
         <div class="p-2"><a href="perfil.php" style="text-decoration:none;color:white;" >Perfil</a></div>
         <div class="p-2"><a href="#" style="text-decoration:none;color:white;" >Amigos</a></div>
         <div class="p-2"><a href="#" style="text-decoration:none;color:white;" >Jogos</a></div> 

@@ -47,7 +47,7 @@
                             <h5>Nome</h5>
                             <h5>Cidade</h5>
                             <h5>Estado</h5>
-                            <button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar</h6></button>
+                            <a href="atualizarUsuario.php"><button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar</h6></button></a>
                         </div>
                     </div>
                     <div class="row">
@@ -59,6 +59,11 @@
                         <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px">
                                 <h3>Jogos</h3>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+					    <a href="operacoes/deletarUser.php"><button type="button" class="btn btn-danger btn-sm">excluir usuario</button></a>
+				        </div>
                     </div>
                     
                 </div>

@@ -2,7 +2,15 @@
 
 include "vendor/autoload.php";
 use Phpml\Clustering\KMeans;
-
+include "operacoes/conn.php";
+$sql=mysqli_query($conexao,"SELECT idpublico, cidade, estado FROM usuarios")or die("erro ao selecionar");
+while($dados = mysqli_fetch_array($sql)){
+    echo $dados['idpublico'];?><br><?php
+    echo $dados['cidade'];?><br><?php
+    echo $dados['estado'];?><br><?php
+}
+print_r($users);
+echo"<br>";
 $samples = [ 'marcus' => [1, 24], 'ronaldo' => [2, 24], 'luiz' => [1, 23],'joao' => [1, 24],'marcelo' => [2, 23]];
 foreach ($samples as $key => $value) {
     echo $key . " | ";

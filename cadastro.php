@@ -108,46 +108,12 @@
                         <select class="form-select form-control mb-2" aria-label="cidade" name="cidade" id="cidade" required>
                             <option selected>----Cidade----</option>
                             <?php
-                                $sql=mysqli_query($conexao,"SELECT  *FROM municipios")or die("erro ao selecionar");                            
+                                $sql=mysqli_query($conexao,"SELECT *FROM municipios ORDER BY nome")or die("erro ao selecionar");                            
 				                while($dados = mysqli_fetch_array($sql)){
                             ?>
                             <option value="<?=$dados['codigo_ibge'];?>"><?=$dados['nome'];?></option><?php }?>
                         </select>
                     </div>
-                    <?php
-                        /*javascript
- 
-$("#select-estados").change(function(){
-    const codigo_uf = $("#select-estados").val()
- 
-    $.ajax({
-        method: "POST",
-        url: '../../busca-cidades',
-        data: {codigo_uf},
-        success: function(data){
-           data = json.PARSE(data);
- 
-            let html = ´
-                <option value=${data.value}>${data.label}</option>
-            ´;
-           $("#select-cidade").html(html)
-        }
-    });
-});
- 
-Php{
-    $uf = $_POST['codigo_uf'];
-    $select = select * into municipios where estado_uf = :$uf
- 
-    if($select){
-        $resultado = $select->fetchAll();
-    }
- 
- 
-    echo json_encode($resultado);
-}
- */                    
-                    ?>
                     <div class="d-flex col-6 mt-3">
                       <button type="reset" class="btn btn-white col-12 mb-3 mr-3 btn-outline-dark ">Limpar</button>
                       <button type="submit" class="btn btn-dark col-12 mb-3"onclick="return validar()">cadastrar</button>
