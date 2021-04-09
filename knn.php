@@ -3,21 +3,26 @@
 include "vendor/autoload.php";
 use Phpml\Clustering\KMeans;
 include "operacoes/conn.php";
+$users=array();
 $sql=mysqli_query($conexao,"SELECT idpublico, cidade, estado FROM usuarios")or die("erro ao selecionar");
 while($dados = mysqli_fetch_array($sql)){
     echo $dados['idpublico'];?><br><?php
     echo $dados['cidade'];?><br><?php
     echo $dados['estado'];?><br><?php
+    $users[$dados['idpublico']]=array($dados['cidade'],$dados['estado']);
 }
 print_r($users);
+$samples=$users;
 echo"<br>";
-$samples = [ 'marcus' => [1, 24], 'ronaldo' => [2, 24], 'luiz' => [1, 23],'joao' => [1, 24],'marcelo' => [2, 23]];
+//$samples = [ 'marcus' => [1, 24], 'ronaldo' => [2, 24], 'luiz' => [1, 23],'joao' => [1, 24],'marcelo' => [2, 23]];
+//print_r($samples);
 foreach ($samples as $key => $value) {
     echo $key . " | ";
     foreach ($value as $item)
 	    echo $item  . " | " ;
     echo "<br/>";
 }
+
 $kmeans = new KMeans(2);
 $ola=$kmeans->cluster($samples);
 var_dump($ola);

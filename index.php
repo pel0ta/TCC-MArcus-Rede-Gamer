@@ -45,10 +45,6 @@
 				<div class="col-3 text-center">amigos
 
 				</div>
-				<div class="col-3 text-center">
-					<a href="operacoes/deletarUser.php"><button type="button" class="btn btn-danger btn-sm">cancelar </button></a>
-				</div>
-
 			</div>
 		</div>
 	</section>
