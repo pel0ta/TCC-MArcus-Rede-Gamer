@@ -31,8 +31,9 @@ echo"<br/>";
 foreach ($ola as $key => $cluster) {
     echo "<br>Cluster " . $key . "<br/>";
     foreach ($cluster as $nome => $atributos)
-	echo "....." . $nome ;//. " / " . var_dump($atributos) . "<br/>";
+	echo "....." . $nome."<br>" ;//. " / " . var_dump($atributos) . "<br/>";
 }
+var_dump($ola[0]);
 
 
 //$samples = [ 'Label1' => [1, 1], 'Label2' => [8, 7], 'Label3' => [1, 2]];
