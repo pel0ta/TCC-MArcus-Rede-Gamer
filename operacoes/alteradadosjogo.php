@@ -27,7 +27,7 @@
     $novonome1 = md5(time()).".".$extensao1;
     $PASTA1="../imagenscapajogo/";	
     move_uploaded_file($_FILES['arquivocapa']['tmp_name'], $PASTA1.$novonome1);
-    $sql=mysqli_query($conexao,$adc="UPDATE jogos SET capa='$novonome1' WHERE id= '$idjogo'")or die("Erro ao conectar com o banco");
+    $sql=mysqli_query($conexao,$adc="UPDATE jogos SET nome='$nome',descricao='$descricao'capa='$novonome1' WHERE id= '$idjogo'")or die("Erro ao conectar com o banco");
         if($sql==1){
         echo "Dados e foto e capa  alterados com sucesso";
         //header('Location: ../perfil.php');

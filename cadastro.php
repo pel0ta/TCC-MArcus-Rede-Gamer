@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-12">
                         <h5>Adicionar Foto:</h5>
-                        <input type="file" name="arquivo">
+                        <input type="file" name="arquivo"accept="image/*">
                     </div>
 
                     <div class="col-12 mt-3">

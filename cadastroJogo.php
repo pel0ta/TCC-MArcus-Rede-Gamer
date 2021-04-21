@@ -28,13 +28,13 @@
             <div class="row justify-content-center text-center">
                 <div class="col-4">
                     <h5>adicionar Foto do jogo</h5>
-                    <input type="file" name="arquivofoto" required autofocus>
+                    <input type="file" name="arquivofoto" required autofocus accept="image/*">
                 </div>
             </div>
             <div class="row justify-content-center text-center">
                 <div class="col-4">
                     <h5>adicionar Foto de capa do jogo</h5>
-                    <input type="file" name="arquivocapa" required autofocus>
+                    <input type="file" name="arquivocapa" accept="image/*" required autofocus >
                 </div>
             </div>
             <div class="row justify-content-center text-center">

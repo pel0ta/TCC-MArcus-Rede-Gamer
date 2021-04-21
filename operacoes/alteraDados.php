@@ -19,7 +19,7 @@
         $sql=mysqli_query($conexao,$adc="UPDATE usuarios SET nome='$nome',datanas='$datanas',pais='$pais',cidade='$cidade',estado='$estado',foto='$novonome' WHERE idpublico = '$idpublico'")or die("Erro ao conectar com o banco");
         if($sql==1){
         echo "Dados Alterados com sucesso";
-        header('Location: ../perfil.php');
+        header('Location: ../perfil.php?idpublico='.$idpublico);
         }
         else{
         header('Location: ../atualizarUsuario.php');
@@ -31,7 +31,7 @@
         $sql=mysqli_query($conexao,"UPDATE usuarios SET nome='$nome',datanas='$datanas',pais='$pais',cidade='$cidade',estado='$estado' WHERE idpublico = '$idpublico'")or die("Erro ao conectar com o banco");
         if($sql==1){
             echo "Dados Alterados com sucesso";
-            header('Location: ../perfil.php');
+            header('Location: ../perfil.php?idpublico='.$idpublico);
         }
         else{
 		header('Location: ../atualizarUsuario.php');
