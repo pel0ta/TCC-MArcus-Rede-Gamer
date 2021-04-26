@@ -11,6 +11,7 @@
             $estado=$dados['estado'];
             $pais=$dados['pais'];
             $datanasc=$dados['datanas'];
+            $foto=$dados['foto'];
         }
     ?>
 <html>
@@ -28,16 +29,18 @@
         <?php
             include "header.php";
         ?>
-        <div class="container" style="padding:20px 10px;border-radius: 25px;background-Color:000;background-image:url(imagens/capa1.jpg);" >
-           <div class="row">
+        <div class="container">
+           <div class="row"style="margin:10px 5px;padding:20px 10px;border-radius: 25px;background-Color:000;background-image:url(imagens/capa1.jpg);">
                 <div class="col">
-                <img src="imagensPerfil/marcus.jpeg" class="img-thumbnail " width="200" height="150" >
+                <img src="./imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?> " class="img-thumbnail " width="200" height="150" >
                 </div>       
                 <div class="col text-center mt-5">
-                    <h3>Marcus Antonio</h3>
-                    <h4>Pelota</h4>
+                    <h3><?php echo $nome;?></h3>
+                    <h4>Conhecido na RG como:</h4>
+                    <h3><?php echo $idpublico;?></h3>
                 </div>              
                 <div class="col text-center">
+                    
                 </div>
             </div>    
         </div>

@@ -6,17 +6,7 @@
 	
 	$sql=mysqli_query($conexao,"SELECT *FROM usuarios WHERE idpublico = '$idusuario'")or die("erro ao selecionar");
 ?>
-<script>
-    // PREVIEW FOTO pego no https://pt.stackoverflow.com/questions/431140/substituir-input-file-por-%C3%ADcone-imagem-com-preview-de-imagem
-    function PreviewImage() {
-        var oFReader = new FileReader();
-        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 
-        oFReader.onload = function (oFREvent) {
-            document.getElementById("uploadPreview").src = oFREvent.target.result;
-        };
-    };
-</script>
 <html>
 <head>
     <title>Rede Gamer</title>
@@ -27,6 +17,17 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>	
 		<script type="text/javascript" src="script.js"></script>
+		<script>
+			// PREVIEW FOTO pego no https://pt.stackoverflow.com/questions/431140/substituir-input-file-por-%C3%ADcone-imagem-com-preview-de-imagem
+			function PreviewImage() {
+				var oFReader = new FileReader();
+				oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+				oFReader.onload = function (oFREvent) {
+					document.getElementById("uploadPreview").src = oFREvent.target.result;
+				};
+			};
+		</script>
 </head>
 <body style="background-image:url(imagens/7.jpg);background-position: center;background-repeat: repeat;background-attachment: fixed;">
 	<?php
@@ -105,7 +106,7 @@
                                  $datetime2 = new DateTime(date('Y-m-d H:i:s',time()));
                                  $interval = $datetime1->diff($datetime2);
                                 ?>
-                                <h6 style="margin:10px 100px"><?php echo $interval->format('%h horas %i minutos %s segundos atrás');?></h6>
+                                <h6 style="margin:10px 100px"><?php echo $tempodapublicacao; //echo $interval->format('%h horas %i minutos %s segundos atrás');?></h6>
 							</div>
 							<div class="col-12 text-center ">
 								<h5><?php echo $comentariopublicacao?></h5>

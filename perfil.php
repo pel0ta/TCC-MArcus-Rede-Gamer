@@ -2,6 +2,7 @@
 session_start();
 if($_SESSION['login']===1){
     include "operacoes/conn.php";
+    $idusuario=$_SESSION['idusuario'];
     if(isset($_GET["idpublico"])) {
         $value = $_GET["idpublico"];  
         $sql=mysqli_query($conexao,"SELECT *FROM usuarios WHERE idpublico = '$value'")or die("erro ao selecionar");
@@ -32,6 +33,17 @@ if($_SESSION['login']===1){
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>	
 		<script type="text/javascript" src="script.js"></script>
+        <script>
+            // PREVIEW FOTO pego no https://pt.stackoverflow.com/questions/431140/substituir-input-file-por-%C3%ADcone-imagem-com-preview-de-imagem
+            function PreviewImage() {
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+                oFReader.onload = function (oFREvent) {
+                    document.getElementById("uploadPreview").src = oFREvent.target.result;
+                };
+            };
+        </script>
     </header>
     <body style="background-image:url(imagens/7.jpg);background-position: center;background-repeat: repeat;background-attachment: fixed;">
         <?php
@@ -91,29 +103,30 @@ if($_SESSION['login']===1){
                         <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px 5px;background-color:rgba(28,28,28, .9);color:white;">
                             <h3>Publicar novo Conteudo</h3>
                             <form class="form-row " enctype="multipart/form-data" action="operacoes/inserepublicacao.php" method="POST">
-                                <div class="col-12">
-                                    <label for="textodapublicacao">digite o que esta pensando</label>
-                                    <textarea class="form-control" style="line-height: 20px;padding: 10px;height: 90px;resize: none;"id="textodapublicacao" rows="3"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <h5>Adicionar uma imagem</h5>
-                                    <div class="image-upload" >
-                                        <label for="uploadImage">
-                                            <img src="https://i.pinimg.com/originals/54/38/19/543819d33dfcfe997f6c92171179e4cd.png" id="uploadPreview" style="width: 110px; height: 110px;">
-                                        </label>  
-                                        <input id="uploadImage" type="file" accept="image/*"name="foto" onchange="PreviewImage();">
-                                    </div>
-                                </div>
-                                <div class="d-flex col-6 mt-3">
-                                    <button type="reset" class="btn btn-danger col-12 mb-3 mr-3">Apagar</button>
-                                    <button type="submit" class="btn btn-success col-12 mb-3">Publicar</button>
-                                </div>
-                            </form>
+							<input type="hidden" id="idpublico" name="idpublico" value="<?php echo$value?>" />
+							<div class="col-12">
+								<label for="textodapublicacao">digite o que esta pensando</label>
+								<textarea class="form-control" style="line-height: 20px;padding: 10px;height: 90px;resize: none;"id="textodapublicacao"name="textodapublicacao" rows="3" required autofocus></textarea>
+							</div>
+							<div class="col-12">
+								<h5>Adicionar uma imagem</h5>
+								<div class="image-upload" >
+									<label for="uploadImage">
+										<img src="https://i.pinimg.com/originals/54/38/19/543819d33dfcfe997f6c92171179e4cd.png" id="uploadPreview" style="width: 110px; height: 110px;">
+									</label>  
+									<input id="uploadImage" type="file" accept="image/*"name="foto" onchange="PreviewImage();">
+								</div>
+							</div>
+							<div class="d-flex col-6 mt-3">
+								<button type="reset" class="btn btn-danger col-12 mb-3 mr-3">Apagar</button>
+								<button type="submit" class="btn btn-success col-12 mb-3">Publicar</button>
+							</div>
+						</form>
                         </div>
                     </div>
                     <?php
-					// aqui agora pegar os dados das publicaçoes precisso pensar em pegar as publicaçoes apenas de amigos
-					$sqlpublicacao=mysqli_query($conexao,"SELECT *FROM publicacao where idusuario='$idpublico' ORDER BY hora DESC" )or die("Erro ao selecionar");
+					// aqui agora pegar os dados das publicaçoes apenas do usuario
+					$sqlpublicacao=mysqli_query($conexao,"SELECT *FROM publicacao where idusuario='$value' ORDER BY hora DESC" )or die("Erro ao selecionar");
 					while($dados = mysqli_fetch_array($sqlpublicacao)){
 						$idusuariopublicacao=$dados['idusuario'];
 						$fotopublicacao=$dados['foto'];
@@ -147,7 +160,7 @@ if($_SESSION['login']===1){
                                         </svg>
                                     </div>
                                 </a>
-                                <a href="login.php"
+                                <a href="#"
                                     style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
                                     <div class="align-items-center justify-content-center btn btn-warning">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
