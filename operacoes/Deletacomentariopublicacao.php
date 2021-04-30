@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	include "conn.php";
-    $idpublicacao=$_GET["idpublicacao"];
+    $idpublicacao=$_GET["idcomentario"];
     
-	$sql=mysqli_query($conexao,"DELETE FROM publicacao WHERE idpublicacao=$idpublicacao")or die("erro ao selecionar");
+	$sql=mysqli_query($conexao,"DELETE FROM comentariopublicacao WHERE idcomentario=$idpublicacao")or die("erro ao selecionar");
 	if($sql==1){
         echo "publicacao excluida com sucesso";
         header('Location: ../perfil.php?idpublico='.$idpublico.'');

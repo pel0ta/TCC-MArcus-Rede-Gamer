@@ -76,8 +76,11 @@ if($_SESSION['login']===1){
                             <h5><?php echo $nome;?></h5>
                             <h5><?php echo $cidade;?></h5>
                             <h5><?php echo $estado;?></h5>
-                            <a href="atualizarUsuario.php"><button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar</h6></button></a>
-                        </div>
+							<?php
+							if($idusuario==$value){?>
+                            	<a href="atualizarUsuario.php"><button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar</h6></button></a>
+							<?php } ?>
+						</div>
                     </div>
                     <div class="row">
                         <div class="col-12 text-center border border-success rounded" style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
@@ -128,15 +131,15 @@ if($_SESSION['login']===1){
 					// aqui agora pegar os dados das publicaçoes apenas do usuario
 					$sqlpublicacao=mysqli_query($conexao,"SELECT *FROM publicacao where idusuario='$value' ORDER BY hora DESC" )or die("Erro ao selecionar");
 					while($dados = mysqli_fetch_array($sqlpublicacao)){
+						$idpublicacao=$dados['idpublicacao'];
 						$idusuariopublicacao=$dados['idusuario'];
 						$fotopublicacao=$dados['foto'];
 						$comentariopublicacao=$dados['comentario'];
 						$tempodapublicacao=$dados['hora'];
-                        $idpublicacao=$dados['idpublicacao'];
 						$sql=mysqli_query($conexao,"SELECT foto,idpublico FROM usuarios WHERE idpublico = '$idusuariopublicacao'")or die("erro ao selecionar");
 						while($dados = mysqli_fetch_array($sql)){
 							$fotonapublicacao=$dados['foto'];
-							$idpublicopublicacao=$dados['idpublico'];    
+							$idpublicopublicacao=$dados['idpublico'];
 						}
 					?>
 					<div class="row">
@@ -144,31 +147,34 @@ if($_SESSION['login']===1){
 							<div class="row"style="margin:5px -10px">
 								<img src="./imagensPerfil/<?php if($fotonapublicacao=="NULL")echo"null.png"; else echo "$fotonapublicacao" ?> "style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
 								<h4 style="margin:10px 10px"><?php echo$idpublicopublicacao;?></h4>
-                                <?php
+								<?php
                                  date_default_timezone_set('America/Sao_Paulo');
                                  $datetime1 = new DateTime($tempodapublicacao);
                                  $datetime2 = new DateTime(date('Y-m-d H:i:s',time()));
                                  $interval = $datetime1->diff($datetime2);
                                 ?>
-                                <h6 style="margin:10px 100px"><?php echo $interval->format('%h horas %i minutos %s segundos atrás');?></h6> 
-                                <a href="operacoes/deletapublicacao.php?idpublicacao=<?php echo $idpublicacao?>"
-                                    style="text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
-                                    <div class="align-items-center justify-content-center btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-                                        </svg>
-                                    </div>
-                                </a>
-                                <a href="#"
-                                    style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
-                                    <div class="align-items-center justify-content-center btn btn-warning">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
-                                        </svg>
-                                    </div>
-                                </a>
-                            </div>
+                                <h6 style="margin:10px 100px"><?php echo $tempodapublicacao; //echo $interval->format('%h horas %i minutos %s segundos atrás');?></h6>
+								<?php
+								if($idusuario==$idpublicopublicacao){?>
+								<a href="operacoes/deletapublicacao.php?idpublicacao=<?php echo $idpublicacao?>"
+									style="text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
+									<div class="align-items-center justify-content-center btn btn-danger">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+											<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+											<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+										</svg>
+									</div>
+								</a>
+								<a href="#"
+									style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
+									<div class="align-items-center justify-content-center btn btn-warning">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+											<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+										</svg>
+									</div>
+								</a>
+								<?php }?>	
+							</div>
 							<div class="col-12 text-center ">
 								<h5><?php echo $comentariopublicacao?></h5>
 								<?php
@@ -179,9 +185,70 @@ if($_SESSION['login']===1){
 								<div class="row"style="margin:10px 10px">
 									<div class="col-12">
 										<button type="button" class="btn btn-primary btn-sm">Curtir</button>
-										<button type="button" class="btn btn-secondary btn-sm">comentar</button>
 									</div>
+								</div>				
+							</div>
+							<form class="form-row " enctype="multipart/form-data" action="operacoes/inserecomentariopublicacao.php" method="POST">
+								<input type="hidden" id="idusuario" name="idusuario" value="<?php echo$idusuario?>" />
+								<input type="hidden" id="idpublicacao" name="idpublicacao" value="<?php echo$idpublicacao?>" />
+								<div class="col-12">
+									<label for="textocomentario">Comentar:</label>
+									<textarea class="form-control" style="line-height: 20px;padding: 10px;height: 45px;resize: none;"id="textocomentario"name="textocomentario" rows="3" required autofocus></textarea>
 								</div>
+								<div class="d-flex col-6 mt-3">
+									<button type="reset" class="btn btn-danger col-6 mb-3 mr-3">Apagar</button>
+									<button type="submit" class="btn btn-success col-6 mb-3">Comentar</button>
+								</div>
+							</form>
+							<div class="row"style="margin:5px 10px">
+								<div class="col-12 text-center ">
+                                    <p>Comentarios:</p>			
+								</div>
+								<?php
+									$sqlcomentario=mysqli_query($conexao,"SELECT *FROM comentariopublicacao ORDER BY hora" )or die("erro ao selecionar");	
+									while($dados = mysqli_fetch_array($sqlcomentario)){
+										$comentario=$dados['comentario'];
+										$tempocomentario=$dados['hora'];
+										$usuariocomentario=$dados['idusuario'];
+										$idcomentario=$dados['idcomentario'];
+										$publicacaocomentario=$dados['idpublicacao'];
+										$sql=mysqli_query($conexao,"SELECT foto,idpublico FROM usuarios WHERE idpublico = '$usuariocomentario'")or die("erro ao selecionar");
+										while($dados = mysqli_fetch_array($sql)){
+											$fotocomentario=$dados['foto'];
+											$idpublicocomentario=$dados['idpublico'];
+											if(	$publicacaocomentario==$idpublicacao){?>
+												<div class="row">
+													<img src="./imagensPerfil/<?php if($fotocomentario=="NULL")echo"null.png"; else echo "$fotocomentario" ?> "style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
+													<h4 style="margin:10px 10px"><?php echo$idpublicocomentario;?></h4>
+													<?php
+													if($idusuario==$usuariocomentario){?>
+													<a href="operacoes/Deletacomentario.php?idcomentario=<?php echo $idcomentario?>"
+														style="text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
+														<div class="align-items-center justify-content-center btn btn-danger">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+																<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+																<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+															</svg>
+														</div>
+													</a>
+													<a href="#"
+														style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
+														<div class="align-items-center justify-content-center btn btn-warning">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+																<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+															</svg>
+														</div>
+													</a>
+													<?php }?>
+												</div>
+												<div class="col-12 text-center ">
+													<p><?php echo$comentario;?></p>
+													<hr>			
+												</div>	
+											<?php }		
+										}	
+									}
+								?>
 							</div>
 						</div>
 					</div>
