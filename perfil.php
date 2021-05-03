@@ -146,7 +146,7 @@ if($_SESSION['login']===1){
 						<div class="col-12 border rounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px 5px">
 							<div class="row"style="margin:5px -10px">
 								<img src="./imagensPerfil/<?php if($fotonapublicacao=="NULL")echo"null.png"; else echo "$fotonapublicacao" ?> "style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
-								<h4 style="margin:10px 10px"><?php echo$idpublicopublicacao;?></h4>
+								<h4 style="margin:10px 10px"><a href="perfil.php?idpublico=<?php echo $idpublicopublicacao?>"style="text-decoration:none;color:white;"><?php echo $idpublicopublicacao?></a></h4>
 								<?php
                                  date_default_timezone_set('America/Sao_Paulo');
                                  $datetime1 = new DateTime($tempodapublicacao);
@@ -219,7 +219,7 @@ if($_SESSION['login']===1){
 											if(	$publicacaocomentario==$idpublicacao){?>
 												<div class="row">
 													<img src="./imagensPerfil/<?php if($fotocomentario=="NULL")echo"null.png"; else echo "$fotocomentario" ?> "style="vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
-													<h4 style="margin:10px 10px"><?php echo$idpublicocomentario;?></h4>
+													<h4 style="margin:10px 10px"><a href="perfil.php?idpublico=<?php echo $idpublicocomentario?>"style="text-decoration:none;color:white;"><?php echo $idpublicocomentario?></a></h4>
 													<?php
 													if($idusuario==$usuariocomentario){?>
 													<a href="operacoes/Deletacomentario.php?idcomentario=<?php echo $idcomentario?>"

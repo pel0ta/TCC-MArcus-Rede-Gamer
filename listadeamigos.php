@@ -46,7 +46,7 @@
 					<img src="./imagensPerfil/<?php if($fotoamigos=="NULL")echo"null.png"; else echo "$fotoamigos" ?> " class="img-rounded col-md-10 " >
 					</div>
 					<div class="col-5">
-						<h1> <?php echo$idamigo?> </h1>
+						<h1><a href="perfil.php?idpublico=<?php echo $idamigo?>"style="text-decoration:none;color:white;"><?php echo $idamigo?></a></h1>
 						<h3> <?php echo$nomeamigo?></h3>
 					</div>
 					<div class="col-5"style="padding:20px 10px">

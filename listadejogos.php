@@ -34,7 +34,7 @@
 					<img src="./imagensPerfiljogo/<?php echo"$fotojogo"?> " class="img-rounded col-md-10 " >
 					</div>
 					<div class="col-10">
-						<h1> <?php echo$nomejogo?> </h1>
+						<h1><a href="paginaDojogo.php?idjogo=<?php echo $idjogo?>"style="text-decoration:none;color:white;"><?php echo$nomejogo?></a></h1>
 					</div>	
 				</div>
 				<?php }?>
