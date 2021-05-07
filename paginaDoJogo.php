@@ -70,7 +70,7 @@
                                 <input type="hidden" id="idjogo" name="idjogo" value="<?php echo$value?>" />
                                 <div class="col-12">
                                     <label for="textocomentario">Escrever um comentario:</label>
-                                    <textarea class="form-control" style="line-height: 20px;padding: 10px;height: 62px;resize: none;"id="textocomentario"name="textocomentario" rows="3" required autofocus></textarea>
+                                    <textarea class="form-control" style="line-height: 20px;padding: 10px;height: 62px;resize: none;"id="textocomentario"name="textocomentario" rows="3" required ></textarea>
                                 </div>
                                 <div class="d-flex col-6 mt-3">
                                     <button type="reset" class="btn btn-outline-secondary col-3 mb-3 mr-5">Apagar</button>
@@ -79,7 +79,7 @@
 							</form>                        
                         </div>
                         <?php
-                            $sqlcomentario=mysqli_query($conexao,"SELECT *FROM comentariojogo ORDER BY hora" )or die("erro ao selecionar");	
+                            $sqlcomentario=mysqli_query($conexao,"SELECT *FROM comentariojogo WHERE idjogo='$value' ORDER BY hora" )or die("erro ao selecionar");	
                             while($dados = mysqli_fetch_array($sqlcomentario)){
                                 $comentario=$dados['comentario'];
                                 $tempocomentario=$dados['hora'];
