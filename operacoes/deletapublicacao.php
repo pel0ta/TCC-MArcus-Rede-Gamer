@@ -6,12 +6,12 @@
 	$sql=mysqli_query($conexao,"DELETE FROM publicacao WHERE idpublicacao=$idpublicacao")or die("erro ao selecionar");
 	if($sql==1){
         echo "publicacao excluida com sucesso";
-        header('Location: ../perfil.php?idpublico='.$idpublico.'');
+        header("Location: ".$_SERVER['HTTP_REFERER']."");
 
     }
     else{
         echo "nao foi possivel excluir a publicacao";
-        //header('Location: ../excluirjogo.php');  
+        header("Location: ".$_SERVER['HTTP_REFERER']."");
     }
 
 ?>	

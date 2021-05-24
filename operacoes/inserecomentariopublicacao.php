@@ -10,12 +10,12 @@
     if (mysqli_query($conexao, $adc)) {
         //$_SESSION['sucesso'] = 1;
         echo "adicionou";
-        //header('Location: ../index.php');  
+        header("Location: ".$_SERVER['HTTP_REFERER']."");
     }
     else{
         //$_SESSION['erro'] = 1;
         echo "Error: " . $adc . "<br>" . mysqli_error($conexao);
         echo "o jogo Nao foi cadastrado";
-        //header('Location: ../index.php');   
+        header("Location: ".$_SERVER['HTTP_REFERER']."");  
     }
 ?>

@@ -32,7 +32,9 @@ if($_SESSION['login']===1){
 		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>	
-		<script type="text/javascript" src="script.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script>
             // PREVIEW FOTO pego no https://pt.stackoverflow.com/questions/431140/substituir-input-file-por-%C3%ADcone-imagem-com-preview-de-imagem
             function PreviewImage() {
@@ -84,13 +86,82 @@ if($_SESSION['login']===1){
                     </div>
                     <div class="row">
                         <div class="col-12 text-center border border-success rounded" style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
-                                <h3>Amigos</h3>
+                                <!--Aqui fica a parte de colocar os do usuario
+							<img src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" height="150" width="250">
+							ja coloquei os cards agora soh preenccher com o banco de dados ta ficando bom
+							-->
+								<h3>Amigos</h3>
+								<hr>
+							<div class="row">
+								<div class="col-6">
+									<div class="card text-white bg-secondary mb-3" >
+										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
+										<div class="card-body">
+											nome do jogo
+										</div>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="card text-white bg-secondary mb-3" >
+										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
+										<div class="card-body">
+											nome do jogo maior para eu olhar uma coisa kkkkkkkkkk
+										</div>
+									</div>	
+								</div>
+								<div class="col-6">
+									<div class="card text-white bg-secondary mb-3" >
+										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
+										<div class="card-body">
+											nome do jogo maior para eu olhar uma coisa kkkkkkkkkk
+										</div>
+									</div>	
+								</div>
+								<div class="col-6">
+									<div class="card text-white bg-secondary mb-3" >
+										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
+										<div class="card-body">
+											nome do jogo
+										</div>
+									</div>
+								</div>	
+							</div>	
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
-                                <h3>Jogos</h3>
-                        </div>
+                            <!--Aqui fica a parte de colocar os jogos curtidos pelo usuario 
+							<img src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" height="150" width="250">
+							ja coloquei os cards agora soh preenccher com o banco de dados ta ficando bom
+							-->
+							<h3>Jogos</h3>
+							<hr>
+							<div class="row">
+							<?php
+							$buscajogo=mysqli_query($conexao,"SELECT idjogo FROM jogosadicionados WHERE idusuario='$value'")or die("erro ao selecionar");
+							$i=0;
+							if($i<4){
+								while($dados=mysqli_fetch_array($buscajogo)){
+									$idjogo=$dados['idjogo'];
+									$dadosjogo=mysqli_query($conexao,"SELECT nome,imagem,id FROM jogos WHERE id='$idjogo'")or die("erro ao selecionar");
+									while($dados1=mysqli_fetch_array($dadosjogo)){
+										$nomejogo=$dados1['nome'];
+										$imgjogo=$dados1['imagem'];
+										$idjogo=$dados1['id'];?>
+										<div class="col-6">
+											<div class="card text-white bg-secondary mb-3" >
+												<img class="card-img-top" src="imagensPerfiljogo/<?php echo$imgjogo;?>" alt="Card image cap">
+												<div class="card-body">
+												<a href="paginaDojogo.php?idjogo=<?php echo $idjogo?>"style="text-decoration:none;color:white;"><?php echo$nomejogo?></a>
+												</div>
+											</div>
+										</div>
+									<?php }
+								}
+								$i++;
+							}?>
+							</div>	
+						</div>
                     </div>
                     <div class="row">
                         <div class="col-12 text-center">
@@ -156,24 +227,50 @@ if($_SESSION['login']===1){
                                 <h6 style="margin:10px 100px"><?php echo $tempodapublicacao; //echo $interval->format('%h horas %i minutos %s segundos atrás');?></h6>
 								<?php
 								if($idusuario==$idpublicopublicacao){?>
-								<a href="operacoes/deletapublicacao.php?idpublicacao=<?php echo $idpublicacao?>"
-									style="text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
-									<div class="align-items-center justify-content-center btn btn-danger">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-											<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-											<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-										</svg>
-									</div>
-								</a>
-								<a href="#"
-									style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
-									<div class="align-items-center justify-content-center btn btn-warning">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-											<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
-										</svg>
-									</div>
-								</a>
-								<?php }?>	
+									<a href="operacoes/deletapublicacao.php?idpublicacao=<?php echo $idpublicacao?>"
+										style="text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
+										<div class="align-items-center justify-content-center btn btn-danger">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+												<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+												<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+											</svg>
+										</div>
+									</a>
+									<a  data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo$idpublicacao?>" data-whateverconteudo="<?php echo$comentariopublicacao?>"
+										style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
+										<div class="align-items-center justify-content-center btn btn-warning">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+												<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"></path>
+											</svg>
+										</div>
+									</a>
+										<!-- Modal -->
+											<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalLabel">o carario</h5>
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+														<div class="modal-body">
+															<form class="form-row " enctype="multipart/form-data" action="operacoes/alteradescricaopublicacao.php" method="POST">
+																<input type="hidden" id="idpublicacao" name="idpublicacao" value="<?php echo$idpublicacao?>" />
+																<div class="col-12">
+																	<textarea class="form-control" style="line-height: 20px;padding: 10px;height: 100px;resize: none;"id="textopublicacao"name="textopublicacao" rows="3"required autofocus><?php echo $idpublicacao ?>soh um texte mesmo</textarea>
+																</div>
+																<div class="modal-footer">
+																	<button type="reset"  data-dismiss="modal" class=" btn btn-danger  mb-3 mr-3">Cancelar</button>
+																	<button type="submit" class="btn btn-success  mb-3">Alterar</button>
+																</div>
+															</form>		
+														</div>
+													</div>  
+												</div>
+											</div>
+										<!-- FIM Modal -->
+									<?php }?>	
 							</div>
 							<div class="col-12 text-center ">
 								<h5><?php echo $comentariopublicacao?></h5>
@@ -222,7 +319,7 @@ if($_SESSION['login']===1){
 													<h4 style="margin:10px 10px"><a href="perfil.php?idpublico=<?php echo $idpublicocomentario?>"style="text-decoration:none;color:white;"><?php echo $idpublicocomentario?></a></h4>
 													<?php
 													if($idusuario==$usuariocomentario){?>
-													<a href="operacoes/Deletacomentario.php?idcomentario=<?php echo $idcomentario?>"
+													<a href="operacoes/Deletacomentariopublicacao.php?idcomentario=<?php echo $idcomentario?>"
 														style="text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
 														<div class="align-items-center justify-content-center btn btn-danger">
 															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -231,7 +328,7 @@ if($_SESSION['login']===1){
 															</svg>
 														</div>
 													</a>
-													<a href="#"
+													<a data-toggle="modal" data-target="#exampleModal1" data-whatever="<?php echo$idcomentario?>" data-whateverconteudo="<?php echo$comentario?>"
 														style="margin: 0px 15px;text-decoration: none; color: black; font-weight: bold; font-size: 18px;">
 														<div class="align-items-center justify-content-center btn btn-warning">
 															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -239,6 +336,32 @@ if($_SESSION['login']===1){
 															</svg>
 														</div>
 													</a>
+													<!-- Modal -->
+														<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="exampleModalLabel">o carario</h5>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																			</button>
+																		</div>
+																	<div class="modal-body">
+																		<form class="form-row " enctype="multipart/form-data" action="operacoes/alteracomentariopublicacao.php" method="POST">
+																			<input type="hidden" id="idcomentario" name="idcomentario" value="<?php echo$idcomentario?>" />
+																			<div class="col-12">
+																				<textarea class="form-control" style="line-height: 20px;padding: 10px;height: 100px;resize: none;"id="textocomentario"name="textocomentario" rows="3"required autofocus><?php echo $comentariopublicacao ?></textarea>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="reset"  data-dismiss="modal" class=" btn btn-danger  mb-3 mr-3">Cancelar</button>
+																				<button type="submit" class="btn btn-success  mb-3">Alterar</button>
+																			</div>
+																		</form>		
+																	</div>
+																</div>  
+															</div>
+														</div>
+													<!-- FIM Modal -->
 													<?php }?>
 												</div>
 												<div class="col-12 text-center ">
@@ -265,3 +388,27 @@ if($_SESSION['login']===1){
 	}
 ?>
 </html>
+<script>
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget) // Button that triggered the modal
+		var recipient = button.data('whatever') // Extract info from data-* attributes
+		var recipient1 = button.data('whateverconteudo')
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this)
+		modal.find('.modal-title').text('Alterar descrição da publicação do id=' + recipient)
+		modal.find('.modal-body input').val(recipient)
+		modal.find('.modal-body textarea').val(recipient1)
+	})
+	$('#exampleModal1').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget) // Button that triggered the modal
+		var recipient = button.data('whatever') // Extract info from data-* attributes
+		var recipient1 = button.data('whateverconteudo')
+		// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		var modal = $(this)
+		modal.find('.modal-title').text('Alterar comentario publicação do id=' + recipient)
+		modal.find('.modal-body input').val(recipient)
+		modal.find('.modal-body textarea').val(recipient1)
+	})
+</script>

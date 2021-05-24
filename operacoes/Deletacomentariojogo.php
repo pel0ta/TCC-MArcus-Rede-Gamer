@@ -6,12 +6,12 @@
 	$sql=mysqli_query($conexao,"DELETE FROM comentariojogo WHERE idcomentario=$idcomentario")or die("erro ao selecionar");
 	if($sql==1){
         echo "comentario excluido com sucesso";
-        header('Location: ../perfil.php?idpublico='.$idpublico.'');
+        header("Location: ".$_SERVER['HTTP_REFERER']."");
 
     }
     else{
         echo "nao foi possivel excluir o comentario";
-        //header('Location: ../excluirjogo.php');  
+        header("Location: ".$_SERVER['HTTP_REFERER']."");  
     }
 
 ?>	
