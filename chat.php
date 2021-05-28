@@ -45,3 +45,6 @@ else {
     header('Location: login.php');
 }
 ?>
+<script>
+$("#divtoscroll").animate({ scrollTop: $("#divtoscroll").height() }, 1000);
+</script>

@@ -49,24 +49,45 @@ foreach ($ola as $key => $cluster) {
                     $foto=$dados['foto'];
                     //mostrar o card de sugestao de amizade
                     $novabusca=mysqli_query($conexao,"SELECT *FROM amizades WHERE idpublico1='$idusuario' AND idpublico2='$nome'")or die("erro ao selecionar");
-                    if($dados1=mysqli_fetch_row($novabusca)){
+                    $novabusca1=mysqli_query($conexao,"SELECT *FROM amizades WHERE idpublico1='$nome' AND idpublico2='$idusuario'")or die("erro ao selecionar");
+                    if(mysqli_fetch_row($novabusca)){
                     }
                     else{
-                        ?>
-                        <div class="col-6">
-                            <div class="card text-white bg-secondary mb-3 align-items-center justify-content-center" >
-                                <img class="card-img-top" src="imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?>" alt="Card image cap">
-                                <div class="card-body">
-                                    <?php echo$idpublico?><br>
-                                    <form action="operacoes/pedidodeamizade.php" method="POST">
-                                        <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$idpublico?>"/>
-                                        <button type="submit"class="btn btn-primary">Adicionar</button>
-                                    </form>
+                        if(mysqli_fetch_row($novabusca1)){
+                            ?>
+                            <div class="col-6">
+                                <div class="card text-white bg-secondary mb-3 align-items-center justify-content-center" >
+                                    <img class="card-img-top" src="imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?>" alt="Card image cap">
+                                    <div class="card-body">
+                                        <?php echo$idpublico?><br>
+                                        <form action="operacoes/aceitarpedidodeamizade.php" method="POST">
+                                            <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$idpublico?>"/>
+                                            <button type="submit"class="btn btn-success">aceitar</button>
+                                        </form>
+                                    </div>
                                 </div>
+                                
                             </div>
-                            
-                        </div>
-                        <?php
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <div class="col-6">
+                                <div class="card text-white bg-secondary mb-3 align-items-center justify-content-center" >
+                                    <img class="card-img-top" src="imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?>" alt="Card image cap">
+                                    <div class="card-body">
+                                        <?php echo$idpublico?><br>
+                                        <form action="operacoes/pedidodeamizade.php" method="POST">
+                                            <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$idpublico?>"/>
+                                            <button type="submit"class="btn btn-primary">Adicionar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <?php  
+                        }
+                        
                     }
                     
                     
