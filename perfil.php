@@ -140,11 +140,11 @@ if($_SESSION['login']===1){
 							<?php
 							$buscajogo=mysqli_query($conexao,"SELECT idjogo FROM jogosadicionados WHERE idusuario='$value'")or die("erro ao selecionar");
 							$i=0;
-							if($i<4){
 								while($dados=mysqli_fetch_array($buscajogo)){
 									$idjogo=$dados['idjogo'];
 									$dadosjogo=mysqli_query($conexao,"SELECT nome,imagem,id FROM jogos WHERE id='$idjogo'")or die("erro ao selecionar");
 									while($dados1=mysqli_fetch_array($dadosjogo)){
+										if($i<=3){
 										$nomejogo=$dados1['nome'];
 										$imgjogo=$dados1['imagem'];
 										$idjogo=$dados1['id'];?>
@@ -156,10 +156,9 @@ if($_SESSION['login']===1){
 												</div>
 											</div>
 										</div>
-									<?php }
-								}
-								$i++;
-							}?>
+									<?php ++$i;}}
+								}	
+							?>
 							</div>	
 						</div>
                     </div>

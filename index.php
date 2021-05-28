@@ -263,10 +263,16 @@
 					</div>
 				<?php }?>
 			</div>
-			<div class="col-3 text-center">
+			<div class="col-3 text-center ">
 				<div class="row">
-					<div class="col-12 text-center "style="background-color:rgba(28,28,28, .9);color:white;margin:10px 20px">
+					<div class="col-12 text-center  "style="background-color:rgba(28,28,28, .9);color:white;margin:10px 20px">
 						<h3>Sugestoes de amizades</h3>
+						<div class="row align-items-center justify-content-center">
+							<?php 
+							include "knn.php";
+							?>
+						</div>
+
 					</div>
 				</div>
 			</div>
