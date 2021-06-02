@@ -23,17 +23,17 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-	function ajax(){// função java script para carregar o banco em tempo real link you tube https://www.youtube.com/watch?v=Z8yCpSxnWOw
-		var req = new XMLHttpRequest();
-		req.onreadystatechange = function(){
-			if (req.readyState == 4 && req.status == 200) {
-					document.getElementById('chat').innerHTML = req.responseText;
+		function ajax(){// função java script para carregar o banco em tempo real link you tube https://www.youtube.com/watch?v=Z8yCpSxnWOw
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function(){
+				if (req.readyState == 4 && req.status == 200) {
+						document.getElementById('chat').innerHTML = req.responseText;
+				}
 			}
+			req.open('GET', 'chat.php', true);
+			req.send();
 		}
-		req.open('GET', 'chat.php', true);
-		req.send();
-	}
-	setInterval(function(){ajax();}, 1000);
+		setInterval(function(){ajax();}, 1000);
 	</script>		
 </head>
 <body onload="ajax();" style="background-image:url(imagens/7.jpg);background-position: center;background-repeat: repeat;background-attachment: fixed;">

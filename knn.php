@@ -54,21 +54,6 @@ foreach ($ola as $key => $cluster) {
                     }
                     else{
                         if(mysqli_fetch_row($novabusca1)){
-                            ?>
-                            <div class="col-6">
-                                <div class="card text-white bg-secondary mb-3 align-items-center justify-content-center" >
-                                    <img class="card-img-top" src="imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?>" alt="Card image cap">
-                                    <div class="card-body">
-                                        <?php echo$idpublico?><br>
-                                        <form action="operacoes/aceitarpedidodeamizade.php" method="POST">
-                                            <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$idpublico?>"/>
-                                            <button type="submit"class="btn btn-success">aceitar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <?php
                         }
                         else{
                             ?>
@@ -83,15 +68,10 @@ foreach ($ola as $key => $cluster) {
                                         </form>
                                     </div>
                                 </div>
-                                
                             </div>
                             <?php  
                         }
-                        
-                    }
-                    
-                    
-                    
+                    }   
                 }
             }
         }  

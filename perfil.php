@@ -58,7 +58,7 @@ if($_SESSION['login']===1){
                 <div class="col text-center mt-5">
                     <h3><?php echo $nome;?></h3>
                     <h4>Conhecido na RG como:</h4>
-                    <h3><?php echo $idpublico;?></h3>
+                    <h3><?php echo $value;?></h3>
                 </div>              
                 <div class="col text-center">
                     <button type="button" class="btn btn-primary md-3 mt-5">adicionar</button>
@@ -74,6 +74,7 @@ if($_SESSION['login']===1){
                     <div class="row">
                         <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
                             <h3>Dados</h3>
+							<hr>
                             <h5><?php echo $nome;?></h5>
                             <h5><?php echo $cidade;?></h5>
                             <h5><?php echo $estado;?></h5>
@@ -89,41 +90,38 @@ if($_SESSION['login']===1){
 							<img src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" height="150" width="250">
 							ja coloquei os cards agora soh preenccher com o banco de dados ta ficando bom
 							-->
-								<h3>Amigos</h3>
-								<hr>
+							<h3>Amigos</h3>
+							<hr>
 							<div class="row">
-								<div class="col-6">
-									<div class="card text-white bg-secondary mb-3" >
-										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
-										<div class="card-body">
-											nome do jogo
-										</div>
-									</div>
-								</div>
-								<div class="col-6">
-									<div class="card text-white bg-secondary mb-3" >
-										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
-										<div class="card-body">
-											nome do jogo maior para eu olhar uma coisa kkkkkkkkkk
-										</div>
-									</div>	
-								</div>
-								<div class="col-6">
-									<div class="card text-white bg-secondary mb-3" >
-										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
-										<div class="card-body">
-											nome do jogo maior para eu olhar uma coisa kkkkkkkkkk
-										</div>
-									</div>	
-								</div>
-								<div class="col-6">
-									<div class="card text-white bg-secondary mb-3" >
-										<img class="card-img-top" src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" alt="Card image cap">
-										<div class="card-body">
-											nome do jogo
-										</div>
-									</div>
-								</div>	
+								<?php
+								$buscaamigo=mysqli_query($conexao,"SELECT idpublico1,idpublico2 FROM amizades WHERE idpublico1='$value' AND solicitacao=1 OR idpublico2='$value'AND solicitacao=1")or die("erro ao selecionar");
+								$i=0;
+									while($dados=mysqli_fetch_array($buscaamigo)){
+										$idpublico1=$dados['idpublico1'];
+										$idpublico2=$dados['idpublico2'];
+										if($idpublico1==$value){
+											$result=$idpublico2;
+										}
+										else{
+											$result=$idpublico1;
+										}
+										$dadosamigo=mysqli_query($conexao,"SELECT nome,foto,idpublico FROM usuarios WHERE idpublico='$result'")or die("erro ao selecionar");
+										while($dados1=mysqli_fetch_array($dadosamigo)){
+											if($i<=3){
+											$nomeamigo=$dados1['nome'];
+											$imgamigo=$dados1['foto'];
+											$idamigo=$dados1['idpublico'];?>
+											<div class="col-6">
+												<div class="card text-white bg-secondary mb-3" >
+													<img class="card-img-top" src="./imagensPerfil/<?php if($imgamigo=="NULL")echo"null.png"; else echo "$imgamigo" ?> " alt="Card image cap">
+													<div class="card-body">
+													<a href="perfil.php?idpublico=<?php echo $idamigo?>"style="text-decoration:none;color:white;"><?php echo$nomeamigo?></a>
+													</div>
+												</div>
+											</div>
+										<?php ++$i;}}
+									}	
+								?>
 							</div>	
                         </div>
                     </div>
