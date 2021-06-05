@@ -52,17 +52,59 @@ if($_SESSION['login']===1){
         ?>
         <div class="container">
            <div class="row"style="margin:10px 5px;padding:20px 10px;border-radius: 25px;background-Color:000;background-image:url(imagens/capa1.jpg);">
-                <div class="col">
+                <div class="col-3">
                 <img src="./imagensPerfil/<?php if($foto=="NULL")echo"null.png"; else echo "$foto" ?> " class="img-thumbnail " width="200" height="150" >
                 </div>       
-                <div class="col text-center mt-5">
+                <div class="col-6 text-center mt-5">
                     <h3><?php echo $nome;?></h3>
                     <h4>Conhecido na RG como:</h4>
                     <h3><?php echo $value;?></h3>
-                </div>              
-                <div class="col text-center">
-                    <button type="button" class="btn btn-primary md-3 mt-5">adicionar</button>
                 </div>
+				<!--agora soh precisso arrumar o batao de enviar amizade :)-->   
+				<?php
+					$buscaamigo=mysqli_query($conexao,"SELECT *FROM amizades WHERE idpublico1='$idusuario' AND idpublico2='$value' OR idpublico2='$idusuario'AND idpublico1='$value'");
+					while($dados=mysqli_fetch_array($buscaamigo)){
+						$solicitacao=$dados['solicitacao'];	
+						$enviapedido=$dados['idpublico1'];
+						$recebepedido=$dados['idpublico2'];
+						if($solicitacao==1){ ?>
+							<div class="col-2 text-center">
+								<form action="operacoes/deletaamizade.php" method="POST">
+									<input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$value?>"/>
+									<button type="submit"class="btn btn-danger md-3 mt-5">Remover Amigo</button>
+                        		</form>
+							</div>
+						<?php }
+						else if($solicitacao==0 && $enviapedido==$value){ ?>
+							<div class="col-2 text-center">
+								<form action="operacoes/aceitarpedidodeamizade.php" method="POST">
+									<input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$value?>"/>
+									<button type="submit"class="btn btn-success md-3 mt-5">Aceitar Amizade</button>
+                        		</form>
+							</div>
+						<?php }
+						else if($solicitacao==0 && $recebepedido==$value){ ?>
+							<div class="col-2 text-center">
+								<form action="operacoes/cancelaPedidoDeAmizade.php" method="POST">
+									<input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$value?>"/>
+									<button type="submit"class="btn btn-danger md-3 mt-5">Cancelar pedido de Amizade</button>
+                        		</form>
+							</div>
+						<?php }
+					}
+					$ola = mysqli_num_rows($buscaamigo);
+					if($ola==0){ 
+						if($value!=$idusuario){?>
+							<div class="col-2 text-center">
+								<form action="operacoes/pedidodeamizade.php" method="POST">
+                                            <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$value?>"/>
+                                            <button type="submit"class="btn btn-info md-3 mt-5">Enviar pedido de amizade</button>
+                            	</form>
+							</div>
+						<?php }
+					}	
+				?>             
+                
             </div>    
         </div>
         <div class="container"style="padding:20px 10px;border-radius: 25px;">

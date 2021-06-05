@@ -10,6 +10,7 @@ $idpublico=$_SESSION['idusuario'];
         <div class="p-2"><a href="listadejogos.php" style="text-decoration:none;color:white;" >Jogos</a></div> 
         <div class="ml p-2"><a href="mensagens.php" style="text-decoration:none;color:white;" >Mensangens</a></div>
         <div class="ml p-2"><a data-toggle="modal" data-target="#modalExemplo" style="text-decoration:none;color:white;" >Pedidos de amizades</a></div>
+        <div class="p-2"><a href="listadeusuarios.php" style="text-decoration:none;color:white;" >Usuarios</a></div>
         <div class="ml-auto p-2"><a href="sair.php" style="text-decoration:none;color:white;" >Sair</a></div>
     </div>
 </body>

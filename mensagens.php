@@ -8,9 +8,7 @@
 
 	if($_SESSION['login']===1){
 		include "operacoes/conn.php";
-	$idusuario=$_SESSION['idusuario'];
-	$sql=mysqli_query($conexao,"SELECT *FROM usuarios WHERE idpublico = '$idusuario'")or die("erro ao selecionar");
-	$amigos=mysqli_query($conexao,"SELECT *FROM usuarios where idpublico NOT IN ('$idusuario')")or die("erro ao selecionar");
+	$value=$_SESSION['idusuario'];
 ?>									
 <html>
 <head>
@@ -54,14 +52,27 @@
 		<div class="row">
 			<div class="col-4"> 
 				<div class="col-12 text-centerrounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px 5px">
-					<?php while($dados = mysqli_fetch_array($amigos)){
-						$fotoamigos=$dados['foto']; //pego os atributos dos usuarios do banco, mudar para pegar somente de amigos
-						$idamigo=$dados['idpublico'];?>
-					<div class="row">
-						<img src="./imagensPerfil/<?php if($fotoamigos=="NULL")echo"null.png"; else echo "$fotoamigos" ?> "style=" margin:10px 5px;vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
-						<h4 style="margin:15px 5px"><a href="mensagens.php?iddestinatario=<?php echo $idamigo?>" style="text-decoration:none;color:white;" ><?php echo $idamigo?></a></h4>
-					</div>
-					<?php } ?>	
+					<?php 
+					$buscaamigo=mysqli_query($conexao,"SELECT idpublico1,idpublico2 FROM amizades WHERE idpublico1='$value' AND solicitacao=1 OR idpublico2='$value'AND solicitacao=1")or die("erro ao selecionar");
+					while($dados=mysqli_fetch_array($buscaamigo)){
+						$idpublico1=$dados['idpublico1'];
+						$idpublico2=$dados['idpublico2'];
+						if($idpublico1==$value){
+							$result=$idpublico2;
+						}
+						else{
+							$result=$idpublico1;
+						}
+						$amigos=mysqli_query($conexao,"SELECT *FROM usuarios where idpublico ='$result'")or die("erro ao selecionar");
+						while($dados = mysqli_fetch_array($amigos)){
+							$fotoamigos=$dados['foto']; //pego os atributos dos usuarios do banco, mudar para pegar somente de amigos
+							$idamigo=$dados['idpublico'];?>
+						<div class="row">
+							<img src="./imagensPerfil/<?php if($fotoamigos=="NULL")echo"null.png"; else echo "$fotoamigos" ?> "style=" margin:10px 5px;vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;" >
+							<h4 style="margin:15px 5px"><a href="mensagens.php?iddestinatario=<?php echo $idamigo?>" style="text-decoration:none;color:white;" ><?php echo $idamigo?></a></h4>
+						</div>
+						<?php }
+					} ?>	
 				</div>
 			</div>
 			<div class="col-8">

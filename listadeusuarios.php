@@ -2,7 +2,13 @@
 	session_start();
 	if($_SESSION['login']===1){
 		include "operacoes/conn.php";
-	$value=$_SESSION['idusuario'];
+	$idusuario=$_SESSION['idusuario'];
+	
+	$sql=mysqli_query($conexao,"SELECT *FROM usuarios WHERE idpublico = '$idusuario'")or die("erro ao selecionar");
+	while($dados = mysqli_fetch_array($sql)){
+		$foto=$dados['foto'];
+	}	
+	
 ?>
 <html>
 <head>
@@ -23,19 +29,8 @@
 	<div class="container"style="border-radius: 25px;">
 		<div class="row " >
 			<div class="col-12 text-center border rounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px -15px">
-				<h2>Amigos:</h2><hr>
-				<?php 
-				$buscaamigo=mysqli_query($conexao,"SELECT idpublico1,idpublico2 FROM amizades WHERE idpublico1='$value' AND solicitacao=1 OR idpublico2='$value'AND solicitacao=1")or die("erro ao selecionar");
-				while($dados=mysqli_fetch_array($buscaamigo)){
-					$idpublico1=$dados['idpublico1'];
-					$idpublico2=$dados['idpublico2'];
-					if($idpublico1==$value){
-						$result=$idpublico2;
-					}
-					else{
-						$result=$idpublico1;
-					}
-				$amigos=mysqli_query($conexao,"SELECT *FROM usuarios where idpublico='$result'")or die("erro ao selecionar");
+				<h2>Amigos:</h2>
+				<?php $amigos=mysqli_query($conexao,"SELECT *FROM usuarios where idpublico NOT IN ('$idusuario')")or die("erro ao selecionar");
 						while($dados = mysqli_fetch_array($amigos)){
 						$fotoamigos=$dados['foto']; 
 						$idamigo=$dados['idpublico'];
@@ -61,7 +56,7 @@
 						<h4>Estado: <?php echo$estadoamigo?></h4>
 					</div>
 				</div>
-				<?php }}?>
+				<?php }?>
 			</div>
 		</div>
 	</div>
