@@ -12,6 +12,10 @@
             $pais=$dados['pais'];
             $datanasc=$dados['datanas'];
             $foto=$dados['foto'];
+            $discord=$dados['discord'];
+			$steam=$dados['Steam'];
+			$epic=$dados['epic'];
+			$twitch=$dados['Twitch'];
         }
     ?>
 <html>
@@ -54,55 +58,35 @@
                     ?>
             <div class="col-12 text-center border rounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px -15px">
                 <div class="row justify-content-center text-center ">
-                    <form class="form-row " enctype="multipart/form-data" action="operacoes/alteraDados.php" method="POST">
-                        <h3>Atualizar Dados</h3><br>
+                    <form class="form-row " enctype="multipart/form-data" action="operacoes/alteradadosredes.php" method="POST">
+                        <h3>Atualizar Redes socias</h3><br>
                 </div>
                 <div class="row justify-content-center text-center">
                     <div class="col-4">
-                        <h5>Nome</h5>
-                        <input type="text" name="nome" id="nome" class="form-control mb-2" 
-                            value="<?php echo $nome; ?>" minlength="3" required autofocus>
-                    </div>
-                </div>
-                <div class="row justify-content-center text-center">
-                    <div class="col-4">
-                        <h5>Alterar Foto:</h5>
-                        <input type="file" name="arquivo">
-                    </div>
-                </div>
-                <div class="row justify-content-center text-center">
-                    <div class="col-4 mt-3">
-                        <h5>Data de nascimento:</h5>
-                        <input type="date" name="datanas" id="datanas" class="form-control mb-2" value="<?php echo $datanasc;?>" required autofocus>
+                        <h5>A dicionar Discord:</h5>
+                        <input type="text" name="discord" id="discord" class="form-control mb-2" 
+                            value="<?php echo $discord; ?>" >
                     </div>
                 </div>
                 <div class="row justify-content-center text-center">
                     <div class="col-4">
-                        <h5>Nacionalidade:</h5>
-                        <input type="text" name="pais" id="pais" class="form-control mb-2"value="<?php echo $pais;?>"
-                            minlength="4" required autofocus>
+                        <h5>A dicionar conta Steam:</h5>
+                        <input type="text" name="steam" id="steam" class="form-control mb-2" 
+                            value="<?php echo $steam; ?>" >
                     </div>
                 </div>
                 <div class="row justify-content-center text-center">
-                    <div class="col-3">
-                        <select class="form-select form-control mb-2" aria-label="Estado" name="estado" id="estado"required>
-                            <option selected>----Estado----</option>
-                            <?php
-                                $sql=mysqli_query($conexao,"SELECT *FROM estados")or die("erro ao selecionar");                            
-                                while($dados = mysqli_fetch_array($sql)){
-                            ?>
-                            <option value="<?=$dados['codigo_uf'];?>"><?=$dados['uf'];?></option><?php }?>
-                        </select>
+                    <div class="col-4">
+                        <h5>A dicionar conta Epic games:</h5>
+                        <input type="text" name="epic" id="epic" class="form-control mb-2" 
+                            value="<?php echo $epic; ?>">
                     </div>
-                    <div class="col-3">
-                        <select class="form-select form-control mb-2" aria-label="cidade" name="cidade" id="cidade" required>
-                            <option selected>----Cidade----</option>
-                            <?php
-                                $sql=mysqli_query($conexao,"SELECT *FROM municipios ORDER BY nome")or die("erro ao selecionar");                            
-                                while($dados = mysqli_fetch_array($sql)){
-                            ?>
-                            <option value="<?=$dados['codigo_ibge'];?>"><?=$dados['nome'];?></option><?php }?>
-                        </select>
+                </div>
+                <div class="row justify-content-center text-center">
+                    <div class="col-4">
+                        <h5>A dicionar link twitch:</h5>
+                        <input type="text" name="twitch" id="twitch" class="form-control mb-2" 
+                            value="<?php echo $twitch; ?>" >
                     </div>
                 </div>
                 <div class="row justify-content-center text-center">

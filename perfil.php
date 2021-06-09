@@ -11,6 +11,10 @@ if($_SESSION['login']===1){
             $idpublico=$dados['idpublico'];
             $nome=$dados['nome'];
             $cidade=$dados['cidade'];
+			$discord=$dados['discord'];
+			$steam=$dados['Steam'];
+			$epic=$dados['epic'];
+			$twitch=$dados['Twitch'];
             $sqlcidade=mysqli_query($conexao,"SELECT nome FROM municipios WHERE codigo_ibge = '$cidade'")or die("erro ao selecionar");
             while($dados1 = mysqli_fetch_array($sqlcidade)){$cidade=$dados1['nome'];}
             $estados=$dados['estado'];
@@ -115,8 +119,7 @@ if($_SESSION['login']===1){
                 <div class="col-4">
                     <div class="row">
                         <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
-                            <h3>Dados</h3>
-							<hr>
+                            <h3>Dados</h3><hr>
                             <h5><?php echo $nome;?></h5>
                             <h5><?php echo $cidade;?></h5>
                             <h5><?php echo $estado;?></h5>
@@ -126,13 +129,28 @@ if($_SESSION['login']===1){
 							<?php } ?>
 						</div>
                     </div>
+					<!--aqui coloco outras redes do usuario sugestao do colega de turma eduardo-->
+					<div class="row">
+                        <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
+							<h3>Redes do Usuario</h3><hr>
+							<?php if($discord!='NULL')?><h5>Discord:</h5><br><?php echo $discord;?>
+							<?php if($steam!='NULL')?><h5><h5>Steam:</h5><br><a href="<?php echo $steam;?>"target="_blank"><?php echo $steam;?></a></h5>
+							<?php if($epic!='NULL')?><h5><h5>ID Epic Games:</h5><br><?php echo $epic;?></h5>
+							<?php if($twitch!='NULL')?><h5><h5>twitch:</h5><br><?php echo $twitch;?></h5>
+							<?php
+							if($idusuario==$value){
+								?>
+                            	<a href="atualizaredesgames.php"><button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar Redes Games:</h6></button></a>
+							<?php }?>
+						</div>
+                    </div>
                     <div class="row">
                         <div class="col-12 text-center border border-success rounded" style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
                                 <!--Aqui fica a parte de colocar os do usuario
 							<img src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" height="150" width="250">
 							ja coloquei os cards agora soh preenccher com o banco de dados ta ficando bom
 							-->
-							<h3>Amigos</h3>
+							<h3><a href="listadeamigos.php?idpublico=<?php echo $value?>" style="text-decoration:none;color:white;" >Amigos</a></h3>
 							<hr>
 							<div class="row">
 								<?php
@@ -173,7 +191,7 @@ if($_SESSION['login']===1){
 							<img src="imagensPerfiljogo/0be47223e7eb64410ac867c1f53978be.jpg" height="150" width="250">
 							ja coloquei os cards agora soh preenccher com o banco de dados ta ficando bom
 							-->
-							<h3>Jogos</h3>
+							<h3><a href="jogosusuario.php?idpublico=<?php echo $value?>" style="text-decoration:none;color:white;" >Jogos</a></h3>
 							<hr>
 							<div class="row">
 							<?php

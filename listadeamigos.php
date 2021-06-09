@@ -2,7 +2,7 @@
 	session_start();
 	if($_SESSION['login']===1){
 		include "operacoes/conn.php";
-	$value=$_SESSION['idusuario'];
+		$value = $_GET["idpublico"];
 ?>
 <html>
 <head>
@@ -23,7 +23,7 @@
 	<div class="container"style="border-radius: 25px;">
 		<div class="row " >
 			<div class="col-12 text-center border rounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px -15px">
-				<h2>Amigos:</h2><hr>
+				<h2>Amigos de <?php echo$value;?>:</h2><hr>
 				<?php 
 				$buscaamigo=mysqli_query($conexao,"SELECT idpublico1,idpublico2 FROM amizades WHERE idpublico1='$value' AND solicitacao=1 OR idpublico2='$value'AND solicitacao=1")or die("erro ao selecionar");
 				while($dados=mysqli_fetch_array($buscaamigo)){

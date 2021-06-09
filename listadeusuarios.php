@@ -29,7 +29,7 @@
 	<div class="container"style="border-radius: 25px;">
 		<div class="row " >
 			<div class="col-12 text-center border rounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px -15px">
-				<h2>Amigos:</h2>
+				<h2>Usuarios cadastrados no Sistema:</h2>
 				<?php $amigos=mysqli_query($conexao,"SELECT *FROM usuarios where idpublico NOT IN ('$idusuario')")or die("erro ao selecionar");
 						while($dados = mysqli_fetch_array($amigos)){
 						$fotoamigos=$dados['foto']; 
