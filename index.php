@@ -96,6 +96,10 @@
 							$fotonapublicacao=$dados['foto'];
 							$idpublicopublicacao=$dados['idpublico'];
 						}
+						// faço uma busca se a publicação e de um amigo do usuario logado ou se a publicação e do usuario que esta logado se for eu mostro com o IF
+						$buscaamigo=mysqli_query($conexao,"SELECT *FROM amizades WHERE idpublico1='$idusuariopublicacao'AND idpublico2='$idusuario' AND solicitacao=1 OR idpublico2='$idusuariopublicacao'AND idpublico1='$idusuario' AND solicitacao=1")or die("erro ao selecionar");
+						$retorno = mysqli_num_rows($buscaamigo); 
+						if($retorno !=0 || $idusuariopublicacao==$idusuario){
 					?>
 					<div class="row">
 						<div class="col-12 border rounded"style="background-color:rgba(28,28,28, .9);color:white;margin:10px 5px">
@@ -259,7 +263,7 @@
 							</div>
 						</div>
 					</div>
-				<?php }?>
+				<?php }}?>
 			</div>
 			<div class="col-3 text-center ">
 				<div class="row">
