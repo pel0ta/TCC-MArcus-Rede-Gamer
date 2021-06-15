@@ -22,24 +22,24 @@
        move_uploaded_file($_FILES['arquivo']['tmp_name'], $PASTA.$novonome);
         $sql=mysqli_query($conexao,"SELECT idpublico,email FROM usuarios WHERE idpublico = '$idpublico' OR email='$email'")or die("idpublico ja cadastrado");
           if(mysqli_num_rows($sql)==0){
-          $adc="INSERT INTO usuarios  VALUES ('$nome','$idpublico','$email','$senha','$datanas','$pais','$cidade','$estado','$novonome')";
+          $adc="INSERT INTO usuarios (nome,idpublico,email,senha,datanas,pais,cidade,estado,foto) VALUES ('$nome','$idpublico','$email','$senha','$datanas','$pais','$cidade','$estado','$novonome')";
           }
           if (mysqli_query($conexao, $adc)) {
           $_SESSION['sucesso'] = 1;
-          echo "adicionou";
+          //echo "adicionou";
           header('Location: ../login.php');    
 
         }
         else{
           header('Location: ../cadastro.php');
               $_SESSION['erro'] = 1;
-              echo "email ou idpublico ja cadastrado";
+              header("Location: {$_SERVER['HTTP_REFERER']}"); 
         }
     }
     else{
     $sql=mysqli_query($conexao,"SELECT idpublico,email FROM usuarios WHERE idpublico = '$idpublico' OR email='$email'")or die("idpublico ja cadastrado");
 	  if(mysqli_num_rows($sql)==0){
-		$adc="INSERT INTO usuarios  VALUES ('$nome','$idpublico','$email','$senha','$datanas','$pais','$cidade','$estado','NULL')";
+      $adc="INSERT INTO usuarios (nome,idpublico,email,senha,datanas,pais,cidade,estado,foto) VALUES ('$nome','$idpublico','$email','$senha','$datanas','$pais','$cidade','$estado','NULL')";
     }
     if (mysqli_query($conexao, $adc)) {
 		$_SESSION['sucesso'] = 1;
@@ -48,9 +48,9 @@
 
 	}
 	else{
-		header('Location: ../cadastro.php');
         $_SESSION['erro'] = 1;
-        echo "email ou idpublico ja cadastrado";
+        //echo "email ou idpublico ja cadastrado";
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
   }	
 }
 ?>

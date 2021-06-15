@@ -39,7 +39,7 @@
 		include "header.php";
 	?>
 	<div class="container">
-		<?php 	
+		<?php /*	
 			if(isset($_SESSION['mensagem'])){
 				if($_SESSION['mensagem']==0){?>
 					<div class="alert alert-danger" role="alert">
@@ -47,7 +47,7 @@
 				</div><?php
 				}	
 			}
-			//$_SESSION['mensagem']=TRUE;
+			//$_SESSION['mensagem']=TRUE;*/
 		?>
 		<div class="row">
 			<div class="col-4"> 
@@ -96,7 +96,7 @@
 				</div>
 				<div class="col-12 text-centerborder rounded  " style="background-color:rgba(28,28,28, .9);color:white;margin:0px 10px;padding-top:10px">
 					<form class="form-row " enctype="multipart/form-data" action="operacoes/inseremensagem.php" method="POST">
-						<input type="hidden" id="idremetente" name="idremetente" value="<?php echo$idusuario?>" />
+						<input type="hidden" id="idremetente" name="idremetente" value="<?php echo$value?>" />
 						<?php
 						if(isset($_GET["iddestinatario"])) {
         					$iddestinario = $_GET["iddestinatario"];?>

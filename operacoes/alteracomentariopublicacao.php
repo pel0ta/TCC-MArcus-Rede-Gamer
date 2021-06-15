@@ -7,12 +7,11 @@
     echo $idcomentario;
     $sql=mysqli_query($conexao,"UPDATE comentariopublicacao SET comentario='$comentario' WHERE idcomentario = '$idcomentario'")or die("Erro ao conectar com o banco");
     if($sql==1){
-        echo "comentario alterado com sucesso";
-        header("Location: ".$_SERVER['HTTP_REFERER']."");
+        //echo "comentario alterado com sucesso";
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
     }
     else{
-    $_SESSION['erro'] = 2;
-    echo "nao alterou o comentario";
-    header("Location: ".$_SERVER['HTTP_REFERER']."");
+    //echo "nao alterou o comentario";
+    header("Location: {$_SERVER['HTTP_REFERER']}"); 
     }	
 ?>

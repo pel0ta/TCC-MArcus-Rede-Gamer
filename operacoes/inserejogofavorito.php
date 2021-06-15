@@ -8,18 +8,18 @@
     if($linha){
     $chave=$linha['chave'];
         $sql=mysqli_query($conexao,$adc="UPDATE jogosadicionados SET favorito=1 WHERE chave= '$chave'")or die("Erro ao conectar com o banco");
-        header("Location: ".$_SERVER['HTTP_REFERER']."");
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
     }
     else{
         $adc="INSERT INTO jogosadicionados(idusuario,idjogo,favorito)  VALUES ('$idusuario','$idjogo','1')";
         if (mysqli_query($conexao, $adc)) {
-            echo "adicionou";
-            header("Location: ".$_SERVER['HTTP_REFERER']."");
+            //echo "adicionou";
+            header("Location: {$_SERVER['HTTP_REFERER']}"); 
         }
         else{
-            echo "Error: " . $adc . "<br>" . mysqli_error($conexao);
-            echo "o jogo Nao foi cadastrado";
-            header("Location: ".$_SERVER['HTTP_REFERER']."");   
+            // "Error: " . $adc . "<br>" . mysqli_error($conexao);
+            //echo "o jogo Nao foi cadastrado";
+            header("Location: {$_SERVER['HTTP_REFERER']}"); 
         }
     }
 ?>

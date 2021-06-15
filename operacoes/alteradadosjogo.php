@@ -29,26 +29,28 @@
     move_uploaded_file($_FILES['arquivocapa']['tmp_name'], $PASTA1.$novonome1);
     $sql=mysqli_query($conexao,$adc="UPDATE jogos SET nome='$nome',descricao='$descricao'capa='$novonome1' WHERE id= '$idjogo'")or die("Erro ao conectar com o banco");
         if($sql==1){
-        echo "Dados e foto e capa  alterados com sucesso";
-        //header('Location: ../perfil.php');
+        //echo "Dados e foto e capa  alterados com sucesso";
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
         }
         else{
         //header('Location: ../atualizarUsuario.php');
         //   $_SESSION['erro'] = 2;
-            echo "na alterados por causa da capa";
+        //echo "na alterados por causa da capa";
+        header("Location: {$_SERVER['HTTP_REFERER']}");  
         }
     }
     
     else{
         $sql=mysqli_query($conexao,$adc="UPDATE jogos SET nome='$nome',descricao='$descricao' WHERE id= '$idjogo'")or die("Erro ao conectar com o banco");
         if($sql==1){
-            echo "Dados Alterados com sucesso sem capa e sem foto";
-            //header('Location: ../perfil.php');
+            //echo "Dados Alterados com sucesso sem capa e sem foto";
+            header("Location: {$_SERVER['HTTP_REFERER']}");  
         }
         else{
 		//header('Location: ../atualizarUsuario.php');
         //$_SESSION['erro'] = 2;
-        echo "sem foto e sem capa dados nao alterados";
+        //echo "sem foto e sem capa dados nao alterados";
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
         }	
     }
 ?>

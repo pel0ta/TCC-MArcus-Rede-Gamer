@@ -9,13 +9,13 @@
     $adc="INSERT INTO comentariojogo (idjogo,idusuario,comentario,hora)  VALUES ('$idjogo','$idusuario','$comentario','$hora')";
     if (mysqli_query($conexao, $adc)) {
         //$_SESSION['sucesso'] = 1;
-        echo "adicionou";
-        header("Location: ".$_SERVER['HTTP_REFERER']."");  
+        //echo "adicionou";
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
     }
     else{
         //$_SESSION['erro'] = 1;
-        echo "Error: " . $adc . "<br>" . mysqli_error($conexao);
-        echo "o jogo Nao foi cadastrado";
-        header("Location: ".$_SERVER['HTTP_REFERER']."");   
+        //echo "Error: " . $adc . "<br>" . mysqli_error($conexao);
+        //echo "o jogo Nao foi cadastrado";
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
     }
 ?>

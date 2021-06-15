@@ -7,5 +7,5 @@
     $linha=mysqli_fetch_array($buscajogofavorito);
     $chave=$linha['chave'];
         $sql=mysqli_query($conexao,$adc="DELETE FROM jogosadicionados WHERE chave= '$chave'")or die("Erro ao conectar com o banco");
-        header("Location: ".$_SERVER['HTTP_REFERER']."");
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
 ?>

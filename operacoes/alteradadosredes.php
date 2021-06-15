@@ -6,19 +6,14 @@
 	$steam=$_POST['steam'];
 	$epic=$_POST['epic'];
 	$twitch=$_POST['twitch'];
-    echo $idpublico;
-    echo $discord;
-    echo $steam;
-    echo $epic;
-    echo $twitch;
     $sql=mysqli_query($conexao,"UPDATE usuarios SET  discord=' $discord',Steam='$steam',epic='$epic',Twitch='$twitch' WHERE idpublico = '$idpublico'")or die("Erro ao conectar com o banco");
         if($sql==1){
-            echo "Dados Alterados com sucesso";
+            //echo "Dados Alterados com sucesso";
             header('Location: ../perfil.php?idpublico='.$idpublico);
         }
         else{
-		header('Location: ../atualizardadosredes.php');
+        header("Location: {$_SERVER['HTTP_REFERER']}"); 
         $_SESSION['erro'] = 2;
-        echo "erro ao aterar as redes socias";
+        //echo "erro ao aterar as redes socias";
         }	
 ?>

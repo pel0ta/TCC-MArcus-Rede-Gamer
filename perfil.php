@@ -133,13 +133,13 @@ if($_SESSION['login']===1){
 					<div class="row">
                         <div class="col-12 text-center border border-success rounded"style="padding:15px; margin:10px -5px;background-color:rgba(28,28,28, .9);color:white;">
 							<h3>Redes do Usuario</h3><hr>
-							<?php if($discord!='NULL')?><h5>Discord:</h5><br><?php echo $discord;?>
-							<?php if($steam!='NULL')?><h5><h5>Steam:</h5><br><a href="<?php echo $steam;?>"target="_blank"><?php echo $steam;?></a></h5>
-							<?php if($epic!='NULL')?><h5><h5>ID Epic Games:</h5><br><?php echo $epic;?></h5>
-							<?php if($twitch!='NULL')?><h5><h5>twitch:</h5><br><?php echo $twitch;?></h5>
+							<?php if($discord!='NULL')?><h5>Discord:</h5><?php echo $discord;?>
+							<?php if($steam!='NULL')?><h5><h5>Steam:</h5><a href="<?php echo $steam;?>"target="_blank"><?php echo $steam;?></a></h5>
+							<?php if($epic!='NULL')?><h5><h5>ID Epic Games:</h5><?php echo $epic;?></h5>
+							<?php if($twitch!='NULL')?><h5><h5>twitch:</h5><a href="<?php echo $twitch;?>"target="_blank"><?php echo $twitch;?></a></h5>
 							<?php
 							if($idusuario==$value){
-								?>
+								?><br><br>
                             	<a href="atualizaredesgames.php"><button type="button" class="btn btn-outline-success btn-sm"><h6>Atualizar Redes Games:</h6></button></a>
 							<?php }?>
 						</div>
