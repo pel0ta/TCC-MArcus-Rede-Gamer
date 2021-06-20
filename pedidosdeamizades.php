@@ -21,7 +21,7 @@ while($dados = mysqli_fetch_array($busca)){
                             <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$idpublico1?>"/>
                             <button type="submit"class="btn btn-success">Adicionar</button>
                         </form>
-                        <form action="operacoes/deletaamizade.php" method="POST">
+                        <form action="operacoes/recusaamizade.php" method="POST">
                             <input type="hidden" id="recebepedido" name="recebepedido" value="<?php echo$idpublico1?>"/>
                             <button type="submit"class="btn btn-Danger">Recusar</button>
                         </form>

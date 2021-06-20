@@ -4,6 +4,8 @@
     $nome = $_POST['nome'];
     $descricao=$_POST['descricao'];
     $arquivo= $_FILES['arquivofoto'];
+    echo $nome;
+    echo $descricao;
     $extensao =  pathinfo($arquivo['name'], PATHINFO_EXTENSION);
     $novonome = md5(time()).".".$extensao;
     $PASTA="../imagensPerfiljogo/";
@@ -22,14 +24,14 @@
     $adc="INSERT INTO jogos (nome, descricao,imagem,capa)  VALUES ('$nome','$descricao','$novonome','$novonome1')";
     if (mysqli_query($conexao, $adc)) {
         //$_SESSION['sucesso'] = 1;
-        //echo "adicionou";
-        header("Location: {$_SERVER['HTTP_REFERER']}");   
+        echo "adicionou";
+        //header("Location: {$_SERVER['HTTP_REFERER']}");   
     }
     else{
         //header('Location: ../cadastrojogo.php');
         //$_SESSION['erro'] = 1;
-        //echo "Error: " . $adc . "<br>" . mysqli_error($conexao);
-        //echo "o jogo Nao foi cadastrado";
-        header("Location: {$_SERVER['HTTP_REFERER']}"); 
+        echo "Error: " . $adc . "<br>" . mysqli_error($conexao);
+        echo "o jogo Nao foi cadastrado";
+        //header("Location: {$_SERVER['HTTP_REFERER']}"); 
     }
 ?>

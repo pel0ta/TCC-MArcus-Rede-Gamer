@@ -28,25 +28,25 @@
             <div class="row justify-content-center text-center">
                 <div class="col-4">
                     <h5>adicionar Foto do jogo</h5>
-                    <input type="file" name="arquivofoto" required autofocus accept="image/*">
+                    <input type="file" name="arquivofoto" id="arquivofoto" required autofocus accept="image/*">
                 </div>
             </div>
             <div class="row justify-content-center text-center">
                 <div class="col-4">
                     <h5>adicionar Foto de capa do jogo</h5>
-                    <input type="file" name="arquivocapa" accept="image/*" required autofocus >
+                    <input type="file" name="arquivocapa" id="arquivocapa" accept="image/*" required autofocus >
                 </div>
             </div>
             <div class="row justify-content-center text-center">
                 <div class="col-4 mt-3">
                     <h5>Descrição do jogo</h5>
-                    <textarea class="form-control" name="descricao" rows="8"></textarea>
+                    <textarea class="form-control" name="descricao" id="descricao" rows="8"></textarea>
                 </div>
             </div>
             <div class="row justify-content-center text-center">
                 <div class="col-4">
                     <button type="reset" class="btn btn-white col-4 mb-3 mr-3 btn-outline-dark ">Limpar</button>
-                    <button type="submit" class="btn btn-success col-4 mb-3"onclick="return validar()">cadastrar</button>
+                    <button type="submit" class="btn btn-success col-4 mb-3">cadastrar</button>
                 </div>                    
             </div>
             </form>
